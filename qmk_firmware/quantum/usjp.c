@@ -250,6 +250,10 @@ bool process_usjp(uint16_t keycode, keyrecord_t* record) {
         REGISTER_CODE(desc_kc_dst);
         return false;
     }
+    if (keycode == KC_LSFT || keycode == KC_RSFT){
+        save_shifts &= ~MOD_BIT(keycode);
+        return true;
+    }
     uint8_t kc_dst = del_down_key(record->event.key);
     if (kc_dst != 0x00) {
         UNREGISTER_CODE(kc_dst);
